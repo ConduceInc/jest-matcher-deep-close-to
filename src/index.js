@@ -56,6 +56,16 @@ function recursiveCheck(actual, expected, decimals) {
                 received: actual
             };
         }
+    } else if (typeof actual === 'boolean' && typeof expected === 'boolean') {
+        if (actual === expected) {
+            return false;
+        } else {
+            return {
+                reason: 'The booleans do not match',
+                expected: expected,
+                received: actual
+            };
+        }
     } else if (Array.isArray(actual) && Array.isArray(expected)) {
         if (actual.length !== expected.length) {
             return {
@@ -68,6 +78,8 @@ function recursiveCheck(actual, expected, decimals) {
             var error = recursiveCheck(actual[i], expected[i], decimals);
             if (error) return error;
         }
+        return false;
+    } else if (expected === null && typeof expected === 'object' && actual === null && typeof actual === 'object') {
         return false;
     } else if (expected !== null && typeof expected === 'object' && actual !== null && typeof actual === 'object') {
         var actualKeys = Object.keys(actual).sort();

@@ -27,6 +27,16 @@ describe('toBeDeepCloseTo', () => {
         expect('test').toBeDeepCloseTo('test', 3);
     });
 
+    it('booleans', () => {
+        expect(true).toBeDeepCloseTo(true);
+        expect(false).toBeDeepCloseTo(false, 3);
+    });
+
+    it('null', () => {
+        expect(null).toBeDeepCloseTo(null);
+        expect(null).toBeDeepCloseTo(null, 3);
+    });
+
 });
 
 
@@ -39,6 +49,16 @@ describe('fails', () => {
     it('strings', () => {
         expect('test').not.toBeDeepCloseTo('rest');
         expect('test').not.toBeDeepCloseTo('rest', 3);
+    });
+
+    it('booleans', () => {
+        expect(true).not.toBeDeepCloseTo(false);
+        expect(true).not.toBeDeepCloseTo(false, 3);
+    });
+
+    it('null', () => {
+        expect(null).not.toBeDeepCloseTo(undefined);
+        expect(null).not.toBeDeepCloseTo(undefined, 3);
     });
 
     it('array', () => {
